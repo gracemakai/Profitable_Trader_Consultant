@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimaryDark">#8261ed</color>
+    <color name="hintColor">#56000000</color>
+
+    //My creation
+    <color name="Dark">#0000A3</color>
+    <color name="Medium">#0067B3</color>
+    <color name="Light">#40B0DF</color>
+    <color name="Odd">#FFD53D</color>
+
+</resources>

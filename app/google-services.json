@@ -1,0 +1,135 @@
+{
+  "project_info": {
+    "project_number": "309012906195",
+    "firebase_url": "https://profitable-trader-consultant.firebaseio.com",
+    "project_id": "profitable-trader-consultant",
+    "storage_bucket": "profitable-trader-consultant.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:309012906195:android:e0baeede6bb11c2f135426",
+        "android_client_info": {
+          "package_name": "com.androstock.googlesignin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "309012906195-vcsds4kcuq6k99is80rcl8kb21j082pb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_v5ZEnV8mzPOIwygfdvY1WeS-wQHz2hk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "309012906195-vcsds4kcuq6k99is80rcl8kb21j082pb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:309012906195:android:7cc562b6130017b4135426",
+        "android_client_info": {
+          "package_name": "com.firebase.uidemo.auth"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "309012906195-vcsds4kcuq6k99is80rcl8kb21j082pb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_v5ZEnV8mzPOIwygfdvY1WeS-wQHz2hk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "309012906195-vcsds4kcuq6k99is80rcl8kb21j082pb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:309012906195:android:0e2e718e6f5515d3135426",
+        "android_client_info": {
+          "package_name": "com.grace.profitabletraderconsultant"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "309012906195-cjikutp3ml6ulddiqjvcho8son7ilehb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.grace.profitabletraderconsultant",
+            "certificate_hash": "2c12c1c348baa31d23ede3a09d1892c1d64eff90"
+          }
+        },
+        {
+          "client_id": "309012906195-vcsds4kcuq6k99is80rcl8kb21j082pb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_v5ZEnV8mzPOIwygfdvY1WeS-wQHz2hk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "309012906195-vcsds4kcuq6k99is80rcl8kb21j082pb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:309012906195:android:03f634e06c1f0adc135426",
+        "android_client_info": {
+          "package_name": "com.grace.ptc1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "309012906195-vcsds4kcuq6k99is80rcl8kb21j082pb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_v5ZEnV8mzPOIwygfdvY1WeS-wQHz2hk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "309012906195-vcsds4kcuq6k99is80rcl8kb21j082pb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

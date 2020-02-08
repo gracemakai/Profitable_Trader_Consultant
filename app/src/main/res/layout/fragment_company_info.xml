@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".InformationInput.CompanyInfo">
+
+
+    <TextView
+        android:id="@+id/head"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="50dp"
+        android:fontFamily="sans-serif"
+        android:gravity="center"
+        android:text="Tell us about your business"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:layout_alignParentTop="true"/>
+
+
+    <LinearLayout
+        android:id="@+id/input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@+id/head"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp">
+
+        <EditText
+            android:id="@+id/businessName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text"
+            android:hint="Business name"
+            android:inputType="text"
+            android:importantForAutofill="no"
+            android:padding="15dp"/>
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"/>
+
+        <Spinner
+            android:id="@+id/businessType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text"
+            android:entries="@array/business_type"
+            android:padding="15dp"/>
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"/>
+
+        <Spinner
+            android:id="@+id/county"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/county"
+            android:background="@drawable/edit_text"
+            android:padding="15dp"
+            />
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"/>
+
+       <!--
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text"
+            android:hint="Sub-county"
+            android:inputType="text"
+            android:importantForAutofill="no"
+            android:padding="15dp"/>
+            -->
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/save"
+        android:layout_below="@id/input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="25dp"
+        android:text="Save"
+        android:textColor="@color/colorPrimaryDark"
+        android:background="@drawable/button"/>
+
+
+</RelativeLayout>

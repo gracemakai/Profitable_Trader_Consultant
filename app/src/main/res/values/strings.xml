@@ -1,0 +1,45 @@
+<resources>
+    <string name="app_name">Profitable Trader Consultant</string>
+    <string name="phone_number">Phone number</string>
+    <string name="sign_in">Send sms</string>
+
+    //Company Info
+    <string-array name="business_type">
+        <item>Agriculture</item>
+    </string-array>
+
+    <string name="name"></string>
+
+    <string-array name="county">
+        <item>Nairobi</item>
+        <item>Nakuru</item>
+        <item>Mombasa</item>
+        <item>Kisumu</item>
+        <item>Eldoret</item>
+    </string-array>
+
+    //Product Info
+    <string-array name="products">
+        <item>Maize</item>
+        <item>Beans</item>
+        <item>Rice</item>
+        <item>Green grams</item>
+        <item>Lentils</item>
+    </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="logo">Logo</string>
+    <string name="input_verification_code">Input verification code</string>
+    <string name="verification_code">Verification code</string>
+    <string name="submit">Submit</string>
+    <string name="title_activity_navigation">Navigation</string>
+    <string name="nav_header_desc">Navigation header</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_tools">Tools</string>
+    <string name="menu_share">Share</string>
+    <string name="menu_send">Send</string>
+    <string name="action_settings">Settings</string>
+</resources>
