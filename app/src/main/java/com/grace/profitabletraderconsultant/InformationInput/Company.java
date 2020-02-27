@@ -4,7 +4,7 @@ import com.google.firebase.database.IgnoreExtraProperties;
 @IgnoreExtraProperties
 public class Company {
 
-    public String Key;
+    public String pushID;
     //CompanyInfo
     private String BusinessName;
     private String BusinessType;
@@ -52,5 +52,11 @@ public class Company {
         return County;
     }
 
+    public String getPushID() {
+        return pushID;
+    }
 
+    public void setPushID(String pushID) {
+        this.pushID = pushID;
+    }
 }

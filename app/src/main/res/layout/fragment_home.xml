@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:layout_marginStart="25dp"
+    android:layout_marginEnd="25dp">
 
     <TextView
         android:id="@+id/Title"
@@ -20,9 +21,7 @@
         android:orientation="vertical"
         android:id="@+id/businessInfo"
         android:layout_below="@id/Title"
-        android:layout_marginTop="50dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginEnd="25dp">
+        android:layout_marginTop="20dp">
 
         <TextView
             android:id="@+id/businessNameOutput"
@@ -51,7 +50,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20sp"
-            android:text="Nakuru"/>
+            android:text=""/>
 
     </LinearLayout>
 
@@ -60,9 +59,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_below="@id/businessInfo"
-        android:layout_marginTop="50dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginEnd="25dp">
+        android:layout_marginTop="20dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -70,19 +67,15 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:textSize="23sp"
                 android:textStyle="bold"
                 android:textColor="@color/Dark"
                 android:text="Product"/>
 
-            <Space
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"/>
-
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:textSize="23sp"
                 android:textStyle="bold"
@@ -99,7 +92,10 @@
             android:id="@+id/recycler_View"
             android:scrollbars="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp">
+
+        </androidx.recyclerview.widget.RecyclerView>
 
     </LinearLayout>
 </RelativeLayout>

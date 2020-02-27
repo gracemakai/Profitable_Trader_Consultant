@@ -1,17 +1,19 @@
 package com.grace.profitabletraderconsultant.Navigation.ui.home;
 
-import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,69 +22,66 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
-import com.grace.profitabletraderconsultant.InformationInput.Company;
-import com.grace.profitabletraderconsultant.InformationInput.CompanyAdapter;
-import com.grace.profitabletraderconsultant.InformationInput.CompanyInfo;
+import com.grace.profitabletraderconsultant.Individual_Product;
+import com.grace.profitabletraderconsultant.InformationInput.Product;
 import com.grace.profitabletraderconsultant.Navigation.MyAdapter;
 import com.grace.profitabletraderconsultant.R;
+import com.grace.profitabletraderconsultant.RecyclerTouchListener;
 import com.grace.profitabletraderconsultant.for_fragments;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
+import static android.content.ContentValues.TAG;
 
 public class HomeFragment extends Fragment implements for_fragments {
 
     private RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager layoutManager;
-    private HomeViewModel homeViewModel;
     private TextView nameBox;
     private TextView typeBox;
     private TextView countyBox;
-    private DatabaseReference databaseReference;
-    CompanyAdapter companyAdapter;
-    List <Company> companies;
-    int position;
-
+    List<Product> productList = new ArrayList<>();
 
     public View onCreateView( @NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        homeViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
+        HomeViewModel homeViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
-
-        //gettting a reference of user node
-        databaseReference = FirebaseDatabase.getInstance().getReference("Member/Phone/Company");
 
         //recyclerView
         recyclerView = root.findViewById(R.id.recycler_View);
-        recyclerView.setHasFixedSize(true);
-        layoutManager = new LinearLayoutManager(this.getActivity());
+        recyclerView.setHasFixedSize(false);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this.getActivity());
         recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.addItemDecoration(new DividerItemDecoration(getContext(), LinearLayoutManager.VERTICAL));
+        mAdapter = new MyAdapter(productList);
+        recyclerView.setAdapter(mAdapter);
+        recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getContext(), recyclerView, new RecyclerTouchListener.ClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                Product product = productList.get(position);
+                Toast.makeText(getContext(), product.getProduct() + " is selected!", Toast.LENGTH_SHORT).show();
+                Bundle bundle = new Bundle();
+                bundle.putString("product", product.getProduct());
+                bundle.putString("price", product.getPrice());
+                Intent intent = new Intent(view.getContext(), Individual_Product.class);
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+
+            @Override
+            public void onLongClick(View view, int position) {
+
+            }
+        }));
 
         nameBox = root.findViewById(R.id.businessNameOutput);
         typeBox = root.findViewById(R.id.businessType);
         countyBox = root.findViewById(R.id.businessLocation);
-
-       /* Company company = new Company() ;
-        nameBox.setText(String.valueOf(company.getBusinessName()));
-        typeBox.setText(String.valueOf(company.getBusinessType()));
-        countyBox.setText(String.valueOf(company.getCounty()));
-
-        */
-        Company company = new Company() ;
-        nameBox.setText(String.valueOf(company.getBusinessName()));
-        typeBox.setText(String.valueOf(company.getBusinessType()));
-        countyBox.setText(String.valueOf(company.getCounty()));
-
-        final List<String> input = new ArrayList<>();
-
-        for (int i = 0; i < 100; i++){
-            input.add("Test" + 1);
-
-            mAdapter = new MyAdapter(input);
-            recyclerView.setAdapter(mAdapter);
-        }
 
         ItemTouchHelper.SimpleCallback simpleItemTouchCallBack = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT |
                 ItemTouchHelper.RIGHT) {
@@ -93,26 +92,13 @@ public class HomeFragment extends Fragment implements for_fragments {
 
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int swipeDir) {
-                input.remove(viewHolder.getAdapterPosition());
+                productList.remove(viewHolder.getAdapterPosition());
                 mAdapter.notifyItemRemoved(viewHolder.getAdapterPosition());
             }
         };
 
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleItemTouchCallBack);
         itemTouchHelper.attachToRecyclerView(recyclerView);
-
-        //final TextView textView = root.findViewById(R.id.businessName);
-
-       /* homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
-
-        */
-
         return root;
     }
 
@@ -120,16 +106,37 @@ public class HomeFragment extends Fragment implements for_fragments {
     public void onStart() {
         super.onStart();
 
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        DatabaseReference databaseReferenceCompany = FirebaseDatabase.getInstance().getReference("Company");
+        databaseReferenceCompany.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                companies = new ArrayList<>();
-                for (DataSnapshot companySnapshot: dataSnapshot.getChildren()){
-                    Company company = companySnapshot.getValue(Company.class);
-                    companies.add(company);
+                    String NameBox = (String) dataSnapshot.child("businessName").getValue();
+                    nameBox.setText(NameBox);
+                    String TypeBox = (String) dataSnapshot.child("businessType").getValue();
+                    typeBox.setText(TypeBox);
+                    String CountyBox = (String) dataSnapshot.child("county").getValue();
+                    countyBox.setText(CountyBox);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        final DatabaseReference databaseReferenceProduct = FirebaseDatabase.getInstance().getReference("Product");
+        databaseReferenceProduct.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                GenericTypeIndicator<Map<String, Product>> genericTypeIndicator = new GenericTypeIndicator<Map<String, Product>>() {};
+                Map<String, Product> hashMap = dataSnapshot.getValue(genericTypeIndicator);
+                for (Map.Entry<String, Product> entry : hashMap.entrySet()) {
+                    Product product = entry.getValue();
+                    productList.add(product);
+                    mAdapter.notifyDataSetChanged();
+                    Log.i(TAG, product.getProduct());
+                    Log.i(TAG, product.getPrice());
                 }
-                companyAdapter = new CompanyAdapter(getActivity(), companies);
-                recyclerView.setAdapter(companyAdapter);
+
             }
 
             @Override
@@ -137,5 +144,7 @@ public class HomeFragment extends Fragment implements for_fragments {
 
             }
         });
+
     }
+
 }

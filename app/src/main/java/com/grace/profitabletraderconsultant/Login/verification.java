@@ -1,17 +1,16 @@
 package com.grace.profitabletraderconsultant.Login;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -23,19 +22,16 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
-
-import java.util.concurrent.TimeUnit;
-
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.grace.profitabletraderconsultant.InformationInput.CompanyInfo;
 import com.grace.profitabletraderconsultant.InformationInput.Input;
-import com.grace.profitabletraderconsultant.MainActivity;
 import com.grace.profitabletraderconsultant.R;
 import com.grace.profitabletraderconsultant.User;
+
+import java.util.concurrent.TimeUnit;
 
 public class verification extends AppCompatActivity {
 
@@ -49,6 +45,7 @@ public class verification extends AppCompatActivity {
     public String phone;
     public String pn;
     EditText editTextCode;
+    Bundle bundle;
     private static final String TAG = verification.class.getSimpleName();
 
     @Override
@@ -60,13 +57,13 @@ public class verification extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         currentUser = FirebaseAuth.getInstance().getCurrentUser();
         mFirebaseInstance = FirebaseDatabase.getInstance();
-        mFirebaseDatabase = mFirebaseInstance.getReference();
+        mFirebaseDatabase = mFirebaseInstance.getReference("User");
 
         editTextCode = findViewById(R.id.code);
 
         //Getting phone number from login activity and sending the code to the number
-        final Intent intent = getIntent();
-        phone = intent.getStringExtra("Phone");
+        bundle = getIntent().getExtras();
+        phone = bundle.getString("phone");
         sendVerificationCode(phone);
 
         //If the automatic sms detection didn't work
@@ -186,7 +183,7 @@ public class verification extends AppCompatActivity {
 
             User user = new User(phone, key);
 
-            mFirebaseDatabase.child("Member/User").setValue(user);
+            mFirebaseDatabase.setValue(user);
 
             pn = phone;
 
@@ -224,7 +221,7 @@ public class verification extends AppCompatActivity {
         private void updateUser(String phone) {
             // updating the user via child nodes
             if (!TextUtils.isEmpty(phone))
-                mFirebaseDatabase.child(userId).child("phone").setValue(phone);
+                mFirebaseDatabase.child("phone").setValue(phone);
 
         }
     }
