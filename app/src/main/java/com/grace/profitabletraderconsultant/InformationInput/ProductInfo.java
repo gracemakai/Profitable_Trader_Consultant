@@ -1,6 +1,5 @@
 package com.grace.profitabletraderconsultant.InformationInput;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +12,7 @@ import androidx.fragment.app.Fragment;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.grace.profitabletraderconsultant.Navigation.Navigation;
+import com.grace.profitabletraderconsultant.Navigation.ui.home.HomeFragment;
 import com.grace.profitabletraderconsultant.R;
 
 
@@ -22,6 +21,7 @@ public class ProductInfo extends Fragment {
     private Spinner productInput;
     private EditText priceIput;
     private Button next;
+    private String phones;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -30,6 +30,14 @@ public class ProductInfo extends Fragment {
 
         productInput = context.findViewById(R.id.product);
         priceIput = context.findViewById(R.id.price);
+
+        phones = getArguments().getString("Phone");
+        final Bundle data = new Bundle();
+        data.putString("Phone", phones);
+
+        final HomeFragment homeFragment = new HomeFragment();
+        homeFragment.setArguments(data);
+
         next = context.findViewById(R.id.nexte);
         next.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -37,15 +45,14 @@ public class ProductInfo extends Fragment {
 
                 String product = productInput.getSelectedItem().toString();
                 String price = priceIput.getText().toString();
-               /* Product product1 = new Product(product, price);
-                product1.setProduct(product);
-                product1.setPrice(price);
 
-                */
                 createProduct(product, price);
-                Intent intent = new Intent(v.getContext(), Navigation.class);
+                getFragmentManager().beginTransaction().replace(R.id.viewPager,homeFragment).commit();
+               /* Intent intent = new Intent(v.getContext(),homeFragment.getClass());
+                intent.putExtras(data);
                 startActivity(intent);
 
+                */
             }
         });
         return context;
@@ -56,24 +63,9 @@ public class ProductInfo extends Fragment {
         Product product = new Product(Product, Price);
         databaseReference.push().setValue(product);
 
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("User").child(phones).child("Product");
+        Product product1 = new Product(Product, Price);
+        reference.push().setValue(product1);
+
     }
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

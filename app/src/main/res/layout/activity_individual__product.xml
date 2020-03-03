@@ -4,12 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:layout_margin="25dp"
     tools:context=".Individual_Product">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -19,7 +21,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Product name"/>
+                android:text="Product name"
+                style="@style/TextAppearance.AppCompat.Title"/>
 
             <TextView
                 android:id="@+id/productName"
@@ -39,7 +42,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Price"/>
+                android:text="Price"
+                style="@style/TextAppearance.AppCompat.Title"/>
 
             <Space
                 android:layout_width="50dp"
@@ -64,7 +68,8 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:divider="@color/Dark">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -73,7 +78,7 @@
                 style="@style/TextAppearance.AppCompat.Light.Widget.PopupMenu.Large"/>
 
             <Space
-                android:layout_width="120dp"
+                android:layout_width="70dp"
                 android:layout_height="wrap_content"/>
 
             <TextView
@@ -92,8 +97,7 @@
                 android:id="@+id/lowest"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="1000"
-                style="@style/TextAppearance.AppCompat.Light.Widget.PopupMenu.Small"/>
+                android:text="1000"/>
 
             <Space
                 android:layout_width="200dp"
@@ -103,8 +107,7 @@
                 android:id="@+id/highest"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="50"
-                style="@style/TextAppearance.AppCompat.Light.Widget.PopupMenu.Small"/>
+                android:text="50"/>
 
         </LinearLayout>
 

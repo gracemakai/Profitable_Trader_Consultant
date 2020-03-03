@@ -44,12 +44,15 @@ public class HomeFragment extends Fragment implements for_fragments {
     private TextView nameBox;
     private TextView typeBox;
     private TextView countyBox;
+    private String Phone;
     List<Product> productList = new ArrayList<>();
 
     public View onCreateView( @NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         HomeViewModel homeViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
+
+
 
         //recyclerView
         recyclerView = root.findViewById(R.id.recycler_View);
@@ -83,6 +86,14 @@ public class HomeFragment extends Fragment implements for_fragments {
         typeBox = root.findViewById(R.id.businessType);
         countyBox = root.findViewById(R.id.businessLocation);
 
+        Bundle arguments = getArguments();
+       // String phones = arguments.getString("Phone");
+        create();
+
+        //Bundle bundle = getIntent().getExtras();
+//        String phones = getArguments().getString("Phone");
+  //      nameBox.setText(phones);
+
         ItemTouchHelper.SimpleCallback simpleItemTouchCallBack = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT |
                 ItemTouchHelper.RIGHT) {
             @Override
@@ -102,11 +113,9 @@ public class HomeFragment extends Fragment implements for_fragments {
         return root;
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-
-        DatabaseReference databaseReferenceCompany = FirebaseDatabase.getInstance().getReference("Company");
+    public void create() {
+        Phone = "0719700918";
+        DatabaseReference databaseReferenceCompany = FirebaseDatabase.getInstance().getReference("User").child(Phone).child("Company");
         databaseReferenceCompany.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -123,7 +132,7 @@ public class HomeFragment extends Fragment implements for_fragments {
             }
         });
 
-        final DatabaseReference databaseReferenceProduct = FirebaseDatabase.getInstance().getReference("Product");
+        final DatabaseReference databaseReferenceProduct = FirebaseDatabase.getInstance().getReference("User").child(Phone).child("Product");
         databaseReferenceProduct.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -146,5 +155,7 @@ public class HomeFragment extends Fragment implements for_fragments {
         });
 
     }
+
+
 
 }

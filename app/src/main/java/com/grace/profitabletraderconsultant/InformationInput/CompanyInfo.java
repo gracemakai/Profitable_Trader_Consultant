@@ -52,13 +52,23 @@ public class CompanyInfo extends Fragment implements for_fragments {
         businessTypeInput = context.findViewById(R.id.businessType);
         countyInput = context.findViewById(R.id.county);
 
+        Bundle bundle1 = getArguments();
+        final String phone = bundle1.getString("Phone");
+        businessNameInput.setText(phone);
         Save = context.findViewById(R.id.save);
         Save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-               fragmentTransaction.replace(R.id.viewPager, new ProductInfo());
-               fragmentTransaction.commit();
+
+
+                ProductInfo productInfo = new ProductInfo();
+                Bundle bundle2 = new Bundle();
+                bundle2.putString("Phone", phone);
+                productInfo.setArguments(bundle2);
+
+                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                   fragmentTransaction.replace(R.id.viewPager, productInfo);
+                   fragmentTransaction.commit();
 
                String name = businessNameInput.getText().toString();
                String type = businessTypeInput.getSelectedItem().toString();
@@ -94,6 +104,11 @@ public class CompanyInfo extends Fragment implements for_fragments {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Company");
         databaseReference.setValue(company);
 
+        Bundle bundle  = getArguments();
+        String phone = bundle.getString("Phone");
+
+        DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference("User").child(phone).child("Company");
+        databaseReference1.setValue(company);
 
     }
 

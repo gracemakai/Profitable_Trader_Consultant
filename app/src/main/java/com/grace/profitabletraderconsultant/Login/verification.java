@@ -28,6 +28,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.grace.profitabletraderconsultant.InformationInput.Input;
+import com.grace.profitabletraderconsultant.InformationInput.ProductInfo;
 import com.grace.profitabletraderconsultant.R;
 import com.grace.profitabletraderconsultant.User;
 
@@ -37,7 +38,6 @@ public class verification extends AppCompatActivity {
 
     private String mVerificationId;
     public String userId;
-    private String key;
     private FirebaseUser currentUser;
     private FirebaseAuth mAuth;
     private DatabaseReference mFirebaseDatabase;
@@ -57,14 +57,17 @@ public class verification extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         currentUser = FirebaseAuth.getInstance().getCurrentUser();
         mFirebaseInstance = FirebaseDatabase.getInstance();
-        mFirebaseDatabase = mFirebaseInstance.getReference("User");
+        mFirebaseDatabase = mFirebaseInstance.getReference("Members");
 
         editTextCode = findViewById(R.id.code);
 
         //Getting phone number from login activity and sending the code to the number
         bundle = getIntent().getExtras();
         phone = bundle.getString("phone");
+        Phone();
         sendVerificationCode(phone);
+
+
 
         //If the automatic sms detection didn't work
         Button sendCode = findViewById(R.id.verify);
@@ -83,7 +86,7 @@ public class verification extends AppCompatActivity {
                 verifyVerificationCode(code);
 
                 if (currentUser != null){
-                    createUser(phone, key);
+                    createUser(phone);
                 } else {
                     updateUser(phone);
                 }
@@ -91,6 +94,10 @@ public class verification extends AppCompatActivity {
         });
 
 
+    }
+
+    public String Phone(){
+        return phone;
     }
 
     //Method that sends verification code
@@ -157,12 +164,15 @@ public class verification extends AppCompatActivity {
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
 
-                   /* Bundle bundle = new Bundle();
-                    bundle.putString("Phone", "phone");
-                    CompanyInfo companyInfo  = new CompanyInfo();
-                    companyInfo.setArguments(bundle);
+                  /* Bundle bundle = new Bundle();
+                   bundle.putString("Phone", phone);
+                   Intent intent1 = new Intent();
 
-                    */
+                   */
+                    Bundle bundle = new Bundle();
+                    bundle.putString("Phone", phone );
+                    Intent intent1 = new Intent(verification.this, ProductInfo.class);
+                    intent1.putExtras(bundle);
 
                 }else {
 
@@ -176,13 +186,12 @@ public class verification extends AppCompatActivity {
         });
     }
 
-    private void createUser(String phone, String key){
+    private void createUser(String phone){
             if (currentUser != null) {
                 userId = mFirebaseDatabase.push().getKey();
             }
 
-            User user = new User(phone, key);
-
+            User user = new User(phone);
             mFirebaseDatabase.setValue(user);
 
             pn = phone;
