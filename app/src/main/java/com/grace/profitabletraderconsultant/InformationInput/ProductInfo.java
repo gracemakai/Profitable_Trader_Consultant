@@ -1,5 +1,6 @@
 package com.grace.profitabletraderconsultant.InformationInput;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,18 +11,19 @@ import android.widget.Spinner;
 
 import androidx.fragment.app.Fragment;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.grace.profitabletraderconsultant.Navigation.ui.home.HomeFragment;
+import com.grace.profitabletraderconsultant.Navigation.Navigation;
 import com.grace.profitabletraderconsultant.R;
-
 
 public class ProductInfo extends Fragment {
 
     private Spinner productInput;
     private EditText priceIput;
     private Button next;
-    private String phones;
+    private String Phone;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -30,14 +32,6 @@ public class ProductInfo extends Fragment {
 
         productInput = context.findViewById(R.id.product);
         priceIput = context.findViewById(R.id.price);
-
-        phones = getArguments().getString("Phone");
-        final Bundle data = new Bundle();
-        data.putString("Phone", phones);
-
-        final HomeFragment homeFragment = new HomeFragment();
-        homeFragment.setArguments(data);
-
         next = context.findViewById(R.id.nexte);
         next.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,25 +39,37 @@ public class ProductInfo extends Fragment {
 
                 String product = productInput.getSelectedItem().toString();
                 String price = priceIput.getText().toString();
-
                 createProduct(product, price);
-                getFragmentManager().beginTransaction().replace(R.id.viewPager,homeFragment).commit();
-               /* Intent intent = new Intent(v.getContext(),homeFragment.getClass());
-                intent.putExtras(data);
+                Intent intent = new Intent(v.getContext(), Navigation.class);
                 startActivity(intent);
-
-                */
             }
         });
         return context;
     }
 
-    private void createProduct(String Product, String Price){
+    private void createProduct(final String Product, final String Price){
+
+        Bundle bundle = getArguments();
+
+        //Saving according to it's county
+        String county = bundle.getString("County");
+        DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference("Products").child(county);
+        Product product2 = new Product(Product, Price);
+        databaseReference1.push().setValue(product2);
+
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Product");
         Product product = new Product(Product, Price);
         databaseReference.push().setValue(product);
 
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("User").child(phones).child("Product");
+        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null){
+            Phone = user.getPhoneNumber();
+            Phone = Phone.replaceAll("\\D", "");
+            Phone = Phone.replaceFirst("254", "");
+            Phone = "0" + Phone;
+
+        }
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("User").child(Phone).child("Product");
         Product product1 = new Product(Product, Price);
         reference.push().setValue(product1);
 

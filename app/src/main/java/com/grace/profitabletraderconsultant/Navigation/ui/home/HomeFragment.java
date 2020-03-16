@@ -18,6 +18,8 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -39,11 +41,11 @@ import static android.content.ContentValues.TAG;
 
 public class HomeFragment extends Fragment implements for_fragments {
 
-    private RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
     private TextView nameBox;
     private TextView typeBox;
     private TextView countyBox;
+    String CountyBox;
     private String Phone;
     List<Product> productList = new ArrayList<>();
 
@@ -51,11 +53,15 @@ public class HomeFragment extends Fragment implements for_fragments {
 
         HomeViewModel homeViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
+        nameBox = root.findViewById(R.id.businessNameOutput);
+        typeBox = root.findViewById(R.id.businessType);
+        countyBox = root.findViewById(R.id.businessLocation);
+        create();
 
 
 
         //recyclerView
-        recyclerView = root.findViewById(R.id.recycler_View);
+        RecyclerView recyclerView = root.findViewById(R.id.recycler_View);
         recyclerView.setHasFixedSize(false);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this.getActivity());
         recyclerView.setLayoutManager(layoutManager);
@@ -71,6 +77,7 @@ public class HomeFragment extends Fragment implements for_fragments {
                 Bundle bundle = new Bundle();
                 bundle.putString("product", product.getProduct());
                 bundle.putString("price", product.getPrice());
+                bundle.putString("county", CountyBox);
                 Intent intent = new Intent(view.getContext(), Individual_Product.class);
                 intent.putExtras(bundle);
                 startActivity(intent);
@@ -82,17 +89,7 @@ public class HomeFragment extends Fragment implements for_fragments {
             }
         }));
 
-        nameBox = root.findViewById(R.id.businessNameOutput);
-        typeBox = root.findViewById(R.id.businessType);
-        countyBox = root.findViewById(R.id.businessLocation);
 
-        Bundle arguments = getArguments();
-       // String phones = arguments.getString("Phone");
-        create();
-
-        //Bundle bundle = getIntent().getExtras();
-//        String phones = getArguments().getString("Phone");
-  //      nameBox.setText(phones);
 
         ItemTouchHelper.SimpleCallback simpleItemTouchCallBack = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT |
                 ItemTouchHelper.RIGHT) {
@@ -113,8 +110,16 @@ public class HomeFragment extends Fragment implements for_fragments {
         return root;
     }
 
-    public void create() {
-        Phone = "0719700918";
+    private void create() {
+
+
+        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null){
+            Phone = user.getPhoneNumber();
+            Phone = Phone.replaceAll("\\D", "");
+            Phone = Phone.replaceFirst("254", "");
+            Phone = "0" + Phone;
+        }
         DatabaseReference databaseReferenceCompany = FirebaseDatabase.getInstance().getReference("User").child(Phone).child("Company");
         databaseReferenceCompany.addValueEventListener(new ValueEventListener() {
             @Override
@@ -123,7 +128,7 @@ public class HomeFragment extends Fragment implements for_fragments {
                     nameBox.setText(NameBox);
                     String TypeBox = (String) dataSnapshot.child("businessType").getValue();
                     typeBox.setText(TypeBox);
-                    String CountyBox = (String) dataSnapshot.child("county").getValue();
+                    CountyBox = (String) dataSnapshot.child("county").getValue();
                     countyBox.setText(CountyBox);
             }
             @Override

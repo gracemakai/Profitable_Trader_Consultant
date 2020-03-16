@@ -53,7 +53,7 @@
             android:background="@drawable/edit_text"
             android:gravity="center"
             android:hint="@string/phone_number"
-            android:importantForAutofill="no"
+            android:importantForAutofill="yes"
             android:inputType="phone"
             android:textColor="@color/Dark"
             android:padding="15dp"

@@ -1,6 +1,5 @@
 package com.grace.profitabletraderconsultant.InformationInput;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,34 +13,20 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.grace.profitabletraderconsultant.R;
 import com.grace.profitabletraderconsultant.for_fragments;
 
-import java.util.List;
-
-
 public class CompanyInfo extends Fragment implements for_fragments {
 
-
-
-    private FirebaseUser currentUser;
-    private DatabaseReference mFirebaseDatabase;
-    private FirebaseDatabase mFirebaseInstance;
-    private Activity contexts;
-    List<Company> companies;
     private Button Save;
     private EditText businessNameInput;
     private Spinner businessTypeInput;
     private Spinner countyInput;
-    private String userId;
-    public String user;
-    public  String nameOutput;
-    public String typeOutput;
-    public String countyOutput;
-    public Company company;
+    private String Phone;
 
     @Nullable
     @Override
@@ -52,48 +37,26 @@ public class CompanyInfo extends Fragment implements for_fragments {
         businessTypeInput = context.findViewById(R.id.businessType);
         countyInput = context.findViewById(R.id.county);
 
-        Bundle bundle1 = getArguments();
-        final String phone = bundle1.getString("Phone");
-        businessNameInput.setText(phone);
         Save = context.findViewById(R.id.save);
         Save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String name = businessNameInput.getText().toString();
+                String type = businessTypeInput.getSelectedItem().toString();
+                String county = countyInput.getSelectedItem().toString();
 
-
+                Bundle bundle = new Bundle();
+                bundle.putString("County", county);
                 ProductInfo productInfo = new ProductInfo();
-                Bundle bundle2 = new Bundle();
-                bundle2.putString("Phone", phone);
-                productInfo.setArguments(bundle2);
-
+                productInfo.setArguments(bundle);
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
                    fragmentTransaction.replace(R.id.viewPager, productInfo);
                    fragmentTransaction.commit();
 
-               String name = businessNameInput.getText().toString();
-               String type = businessTypeInput.getSelectedItem().toString();
-               String county = countyInput.getSelectedItem().toString();
+
                Company company = new Company(name, type, county);
 
-                createBusiness(company);
-
-              /* currentUser = FirebaseAuth.getInstance().getCurrentUser();
-                String uid = null;
-                if (currentUser != null) {
-                    uid = currentUser.getUid();
-                }
-                mFirebaseDatabase = FirebaseDatabase.getInstance().getReference("Company").child(uid);
-
-               DatabaseReference databaseReference = mFirebaseDatabase.push();
-               String pushId = databaseReference.getKey();
-               company.setPushID(pushId);
-               databaseReference.setValue(company);
-
-               Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();
-
-               name  = businessNameInput.getText().toString();
-
-               //createBusiness(name, type, county);*/
+               createBusiness(company);
             }
         });
         return context;
@@ -103,11 +66,16 @@ public class CompanyInfo extends Fragment implements for_fragments {
 
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Company");
         databaseReference.setValue(company);
+        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null){
+            Phone = user.getPhoneNumber();
+            Phone = Phone.replaceAll("\\D", "");
+            Phone = Phone.replaceFirst("254", "");
+            Phone = "0" + Phone;
 
-        Bundle bundle  = getArguments();
-        String phone = bundle.getString("Phone");
+        }
 
-        DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference("User").child(phone).child("Company");
+        DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference("User").child(Phone).child("Company");
         databaseReference1.setValue(company);
 
     }

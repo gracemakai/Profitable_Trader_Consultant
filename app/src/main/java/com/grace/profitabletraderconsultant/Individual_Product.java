@@ -27,6 +27,7 @@ public class Individual_Product extends AppCompatActivity {
     TextView ProductName, ProductPrice, Lowest, Highest;
     LineChart lineChart;
     Bundle bundle;
+    String County;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,20 +44,22 @@ public class Individual_Product extends AppCompatActivity {
         bundle = getIntent().getExtras();
         ProductName.setText(bundle.getString("product"));
         ProductPrice.setText(bundle.getString("price"));
+        County = bundle.getString("county");
+
         lineChartData();
 
         Log.d("6", "Done");
     }
 
     public void lineChartData(){
-        DatabaseReference mPostReference = FirebaseDatabase.getInstance().getReference("Product");
-        Query query = mPostReference.orderByChild("product").equalTo(bundle.getString("product"));
+        DatabaseReference mPostReference = FirebaseDatabase.getInstance().getReference("Products");
+        Query query = mPostReference.orderByChild("product").equalTo(bundle.getString("county"));
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 List priceData = new ArrayList();
-               ArrayList yData = new ArrayList<>();
+                ArrayList yData = new ArrayList<>();
                 float i =0;
                 for (DataSnapshot ds : dataSnapshot.getChildren()){
                     i=i+1;

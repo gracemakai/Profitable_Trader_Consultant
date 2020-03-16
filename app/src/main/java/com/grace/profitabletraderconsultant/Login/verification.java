@@ -43,7 +43,7 @@ public class verification extends AppCompatActivity {
     private DatabaseReference mFirebaseDatabase;
     private FirebaseDatabase mFirebaseInstance;
     public String phone;
-    public String pn;
+    public String extendedPhone;
     EditText editTextCode;
     Bundle bundle;
     private static final String TAG = verification.class.getSimpleName();
@@ -64,14 +64,12 @@ public class verification extends AppCompatActivity {
         //Getting phone number from login activity and sending the code to the number
         bundle = getIntent().getExtras();
         phone = bundle.getString("phone");
-        Phone();
+        phone = phone.replaceFirst("^0*", "");
+        extendedPhone = "+254" + phone;
         sendVerificationCode(phone);
-
-
 
         //If the automatic sms detection didn't work
         Button sendCode = findViewById(R.id.verify);
-
         sendCode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,22 +84,14 @@ public class verification extends AppCompatActivity {
                 verifyVerificationCode(code);
 
                 if (currentUser != null){
-                    createUser(phone);
+                    createUser(extendedPhone);
                 } else {
-                    updateUser(phone);
+                    updateUser(extendedPhone);
                 }
             }
         });
-
-
     }
-
-    public String Phone(){
-        return phone;
-    }
-
     //Method that sends verification code
-
     private void sendVerificationCode(String phone){
 
         PhoneAuthProvider.getInstance().verifyPhoneNumber
@@ -159,16 +149,12 @@ public class verification extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
 
+
                     Intent intent = new Intent(verification.this, Input.class);
                     intent.putExtra("Phone", phone);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
 
-                  /* Bundle bundle = new Bundle();
-                   bundle.putString("Phone", phone);
-                   Intent intent1 = new Intent();
-
-                   */
                     Bundle bundle = new Bundle();
                     bundle.putString("Phone", phone );
                     Intent intent1 = new Intent(verification.this, ProductInfo.class);
@@ -190,11 +176,8 @@ public class verification extends AppCompatActivity {
             if (currentUser != null) {
                 userId = mFirebaseDatabase.push().getKey();
             }
-
-            User user = new User(phone);
+            User user = new User(extendedPhone);
             mFirebaseDatabase.setValue(user);
-
-            pn = phone;
 
             addUserChangeListener();
         }
