@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Business information"
+        android:text="@string/business_information"
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
         android:textSize="25sp"
         android:layout_marginTop="20dp"/>
@@ -21,7 +21,9 @@
         android:orientation="vertical"
         android:id="@+id/businessInfo"
         android:layout_below="@id/Title"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="20dp"
+        android:clickable="true"
+        android:focusable="true">
 
         <TextView
             android:id="@+id/businessNameOutput"
@@ -32,7 +34,7 @@
 
         <Space
             android:layout_width="wrap_content"
-            android:layout_height="15dp"/>
+            android:layout_height="10dp"/>
 
         <TextView
             android:id="@+id/businessType"
@@ -43,10 +45,21 @@
 
         <Space
             android:layout_width="wrap_content"
-            android:layout_height="15dp"/>
+            android:layout_height="10dp"/>
 
         <TextView
             android:id="@+id/businessLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text=""/>
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="10dp"/>
+
+        <TextView
+            android:id="@+id/sub_countyLocation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20sp"

@@ -6,12 +6,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.ItemTouchHelper;
@@ -29,9 +29,9 @@ import com.google.firebase.database.ValueEventListener;
 import com.grace.profitabletraderconsultant.Individual_Product;
 import com.grace.profitabletraderconsultant.InformationInput.Product;
 import com.grace.profitabletraderconsultant.Navigation.MyAdapter;
+import com.grace.profitabletraderconsultant.Navigation.ui.Edit_Company_Info;
 import com.grace.profitabletraderconsultant.R;
 import com.grace.profitabletraderconsultant.RecyclerTouchListener;
-import com.grace.profitabletraderconsultant.for_fragments;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,26 +39,38 @@ import java.util.Map;
 
 import static android.content.ContentValues.TAG;
 
-public class HomeFragment extends Fragment implements for_fragments {
+public class HomeFragment extends Fragment {
 
     private RecyclerView.Adapter mAdapter;
     private TextView nameBox;
     private TextView typeBox;
     private TextView countyBox;
-    String CountyBox;
+    private TextView subCountyBox;
+    private String CountyBox;
     private String Phone;
+    private String NameBox;
+    private String TypeBox;
+    private String SubCounty;
     List<Product> productList = new ArrayList<>();
 
     public View onCreateView( @NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        final View root = inflater.inflate(R.layout.fragment_home, container, false);
 
-        HomeViewModel homeViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_home, container, false);
         nameBox = root.findViewById(R.id.businessNameOutput);
         typeBox = root.findViewById(R.id.businessType);
         countyBox = root.findViewById(R.id.businessLocation);
+        subCountyBox = root.findViewById(R.id.sub_countyLocation);
+        LinearLayout business = root.findViewById(R.id.businessInfo);
+
         create();
 
-
+        //To edit business info
+        business.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(root.getContext(), Edit_Company_Info.class));
+            }
+        });
 
         //recyclerView
         RecyclerView recyclerView = root.findViewById(R.id.recycler_View);
@@ -78,18 +90,16 @@ public class HomeFragment extends Fragment implements for_fragments {
                 bundle.putString("product", product.getProduct());
                 bundle.putString("price", product.getPrice());
                 bundle.putString("county", CountyBox);
+                bundle.putString("sub", SubCounty);
                 Intent intent = new Intent(view.getContext(), Individual_Product.class);
                 intent.putExtras(bundle);
                 startActivity(intent);
             }
-
             @Override
             public void onLongClick(View view, int position) {
 
             }
         }));
-
-
 
         ItemTouchHelper.SimpleCallback simpleItemTouchCallBack = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT |
                 ItemTouchHelper.RIGHT) {
@@ -112,7 +122,6 @@ public class HomeFragment extends Fragment implements for_fragments {
 
     private void create() {
 
-
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null){
             Phone = user.getPhoneNumber();
@@ -124,12 +133,14 @@ public class HomeFragment extends Fragment implements for_fragments {
         databaseReferenceCompany.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    String NameBox = (String) dataSnapshot.child("businessName").getValue();
+                    NameBox = (String) dataSnapshot.child("businessName").getValue();
                     nameBox.setText(NameBox);
-                    String TypeBox = (String) dataSnapshot.child("businessType").getValue();
+                    TypeBox = (String) dataSnapshot.child("businessType").getValue();
                     typeBox.setText(TypeBox);
                     CountyBox = (String) dataSnapshot.child("county").getValue();
                     countyBox.setText(CountyBox);
+                    SubCounty = (String) dataSnapshot.child("subCounty").getValue();
+                    subCountyBox.setText(SubCounty);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -158,9 +169,5 @@ public class HomeFragment extends Fragment implements for_fragments {
 
             }
         });
-
     }
-
-
-
 }

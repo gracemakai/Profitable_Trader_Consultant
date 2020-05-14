@@ -3,8 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".InformationInput.CompanyInfo">
-
+    tools:context=".Navigation.ui.Edit_Company_Info">
 
     <TextView
         android:id="@+id/head"
@@ -14,7 +13,7 @@
         android:layout_marginBottom="50dp"
         android:fontFamily="sans-serif"
         android:gravity="center"
-        android:text="@string/tell_us_about_your_business"
+        android:text="@string/edit_your_business_information"
         android:textColor="#000000"
         android:textSize="20sp"
         android:layout_alignParentTop="true"/>
@@ -88,5 +87,6 @@
         android:text="@string/save"
         android:textColor="@color/colorPrimaryDark"
         android:background="@drawable/button"/>
+
 
 </RelativeLayout>

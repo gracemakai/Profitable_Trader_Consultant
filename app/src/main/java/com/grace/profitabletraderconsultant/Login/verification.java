@@ -28,7 +28,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.grace.profitabletraderconsultant.InformationInput.Input;
-import com.grace.profitabletraderconsultant.InformationInput.ProductInfo;
 import com.grace.profitabletraderconsultant.R;
 import com.grace.profitabletraderconsultant.User;
 
@@ -149,23 +148,42 @@ public class verification extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
 
-
                     Intent intent = new Intent(verification.this, Input.class);
                     intent.putExtra("Phone", phone);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
 
-                    Bundle bundle = new Bundle();
-                    bundle.putString("Phone", phone );
-                    Intent intent1 = new Intent(verification.this, ProductInfo.class);
-                    intent1.putExtras(bundle);
+                /*    boolean isNew = task.getResult().getAdditionalUserInfo().isNewUser();
+                    if (!isNew){
+                        Toast.makeText(verification.this, "Not new", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(verification.this, Navigation.class);
+                        intent.putExtra("Phone", phone);
+                        startActivity(intent);
+                    }else {
+
+                        Intent intent = new Intent(verification.this, Input.class);
+                        intent.putExtra("Phone", phone);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
+
+                        Bundle bundle = new Bundle();
+                        bundle.putString("Phone", phone);
+                        Intent intent1 = new Intent(verification.this, ProductInfo.class);
+                        intent1.putExtras(bundle);
+                    }
+
+                 */
 
                 }else {
 
-                    String message = "Something is wrong. We will fix it soon";
 
                     if (task.getException() instanceof FirebaseAuthInvalidCredentialsException){
-                        message = "Invalid code entered";
+                        String message = "Invalid code entered";
+                        Toast.makeText(verification.this, message, Toast.LENGTH_SHORT).show();
+                    }else {
+
+                        String message = "Something is wrong. We will fix it soon";
+                        Toast.makeText(verification.this, message, Toast.LENGTH_SHORT).show();
                     }
                 }
             }

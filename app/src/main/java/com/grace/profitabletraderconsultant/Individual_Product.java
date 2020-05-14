@@ -52,8 +52,9 @@ public class Individual_Product extends AppCompatActivity {
     }
 
     public void lineChartData(){
-        DatabaseReference mPostReference = FirebaseDatabase.getInstance().getReference("Products");
-        Query query = mPostReference.orderByChild("product").equalTo(bundle.getString("county"));
+        DatabaseReference mPostReference = FirebaseDatabase.getInstance().getReference("Product");
+   //     Query query = mPostReference.orderByChild("product").equalTo(bundle.getString("county"));
+        Query query = mPostReference.equalTo(bundle.getString("product"));
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -84,16 +85,13 @@ public class Individual_Product extends AppCompatActivity {
 
             }
         });
-
     }
 
     public void calculatePrice(ArrayList<Integer> price){
         //findMin(ArrayList <Integer> price);
 
     }
-    public static Integer findMin(List<Integer> list)
-    {
-
+    public static Integer findMin(List<Integer> list) {
         // check list is empty or not
         if (list == null || list.size() == 0) {
             return Integer.MAX_VALUE;
@@ -113,9 +111,7 @@ public class Individual_Product extends AppCompatActivity {
 
     // function return maximum value in an unsorted
     // list in Java using Collection
-    public static Integer findMax(List<Integer> list)
-    {
-
+    public static Integer findMax(List<Integer> list) {
         // check list is empty or not
         if (list == null || list.size() == 0) {
             return Integer.MIN_VALUE;
@@ -131,7 +127,6 @@ public class Individual_Product extends AppCompatActivity {
         // last element in the sorted list would be maximum
         return sortedlist.get(sortedlist.size() - 1);
     }
-
 
   /* public void verticalBarChartData (){
        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Product");

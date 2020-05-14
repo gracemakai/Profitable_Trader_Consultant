@@ -9,30 +9,22 @@ public class Company {
     private String BusinessName;
     private String BusinessType;
     private String County;
+    private String SubCounty;
+    private String Phone;
 
     //ProductInfo
     public String Product;
     public String Price;
 
-    public void setBusinessName(String BusinessName) {
-        this.BusinessName = BusinessName;
-    }
-
-    public void setBusinessType(String BusinessType) {
-        this.BusinessType =BusinessType;
-    }
-
-    public void setCounty(String County) {
-        this.County = County;
-    }
-
     public Company() {
     }
 
-    public Company(String BusinessName, String BusinessType, String County) {
+    public Company(String BusinessName, String BusinessType, String County, String SubCounty, String Phone) {
         this.BusinessName = BusinessName;
         this.BusinessType = BusinessType;
         this.County = County;
+        this.SubCounty = SubCounty;
+        this.Phone = Phone;
     }
 
     public Company(String Product, String Price) {
@@ -52,11 +44,11 @@ public class Company {
         return County;
     }
 
-    public String getPushID() {
-        return pushID;
+    public String getSubCounty() {
+        return SubCounty;
     }
 
-    public void setPushID(String pushID) {
-        this.pushID = pushID;
+    public String getPhone() {
+        return Phone;
     }
 }

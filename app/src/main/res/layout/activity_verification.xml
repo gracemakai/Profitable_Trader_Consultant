@@ -51,14 +51,16 @@
             android:id="@+id/code"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:autoText="false"
             android:background="@drawable/edit_text"
-            android:gravity="center"
             android:digits="0123456789"
+
+            android:gravity="center"
             android:hint="@string/verification_code"
             android:importantForAutofill="no"
             android:inputType="phone"
             android:padding="15dp"
-            android:textColorHint="@color/hintColor"/>
+            android:textColorHint="@color/hintColor" />
 
         <Button
             android:id="@+id/verify"

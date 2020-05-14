@@ -9,26 +9,24 @@
         android:id="@+id/nav_home"
         android:name="com.grace.profitabletraderconsultant.Navigation.ui.home.HomeFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" >
-        <action
-            android:id="@+id/action_nav_home_to_nav_profile"
-            app:destination="@id/nav_product_input" />
-    </fragment>
+        tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/nav_product_input"
         android:name="com.grace.profitabletraderconsultant.InformationInput.ProductInfo"
         android:label="@string/product_input"
-        tools:layout="@layout/fragment_product_info">
-        <action
-            android:id="@+id/action_nav_profile_to_nav_tools"
-            app:destination="@id/nav_info" />
-    </fragment>
+        tools:layout="@layout/fragment_product_info"/>
 
     <fragment
         android:id="@+id/nav_info"
         android:name="com.grace.profitabletraderconsultant.Navigation.ui.tools.ToolsFragment"
         android:label="@string/menu_info"
         tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/nav_companyInfo"
+        android:name="com.grace.profitabletraderconsultant.InformationInput.CompanyInfo"
+        android:label="@string/company_info"
+        tools:layout="@layout/fragment_company_info" />
 
 </navigation>
