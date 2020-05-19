@@ -53,8 +53,7 @@ public class Individual_Product extends AppCompatActivity {
 
     public void lineChartData(){
         DatabaseReference mPostReference = FirebaseDatabase.getInstance().getReference("Product");
-   //     Query query = mPostReference.orderByChild("product").equalTo(bundle.getString("county"));
-        Query query = mPostReference.equalTo(bundle.getString("product"));
+        Query query = mPostReference.orderByChild("product").equalTo(bundle.getString("product"));
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -87,10 +86,6 @@ public class Individual_Product extends AppCompatActivity {
         });
     }
 
-    public void calculatePrice(ArrayList<Integer> price){
-        //findMin(ArrayList <Integer> price);
-
-    }
     public static Integer findMin(List<Integer> list) {
         // check list is empty or not
         if (list == null || list.size() == 0) {
