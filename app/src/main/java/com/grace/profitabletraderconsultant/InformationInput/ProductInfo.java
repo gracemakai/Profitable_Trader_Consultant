@@ -74,7 +74,7 @@ public class ProductInfo extends Fragment {
                 County = (String) dataSnapshot.child("county").getValue();
                 String Sub = (String) dataSnapshot.child("subCounty").getValue();
                  county[0] = County;
-
+                create(Product, Price, County);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -82,9 +82,8 @@ public class ProductInfo extends Fragment {
             }
         });
         //Saving according to it's county
-        DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference("Products").child(county[0]);
-        Product product2 = new Product(Product, Price);
-        databaseReference1.push().setValue(product2);
+
+
 
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Product");
         Product product = new Product(Product, Price);
@@ -96,7 +95,11 @@ public class ProductInfo extends Fragment {
 
     }
 
-    private void create() {
+    private void create(String product, String price, String county) {
+
+        DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference("Products").child(county);
+        Product product2 = new Product(product, price);
+        databaseReference1.push().setValue(product2);
 
 
     }}
