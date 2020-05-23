@@ -4,9 +4,9 @@
     <color name="hintColor">#56000000</color>
 
     //My creation
-    <color name="Dark">#0000A3</color>
-    <color name="Medium">#0067B3</color>
-    <color name="Light">#40B0DF</color>
+    <color name="Dark">#5104b5</color>
+    <color name="Medium">#7005fa</color>
+    <color name="Light">#7b49b6</color>
     <color name="Odd">#FFD53D</color>
 
 </resources>

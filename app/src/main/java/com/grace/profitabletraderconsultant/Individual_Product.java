@@ -52,7 +52,7 @@ public class Individual_Product extends AppCompatActivity {
     }
 
     public void lineChartData(){
-        DatabaseReference mPostReference = FirebaseDatabase.getInstance().getReference("Product");
+        DatabaseReference mPostReference = FirebaseDatabase.getInstance().getReference("Products").child(bundle.getString("county"));
         Query query = mPostReference.orderByChild("product").equalTo(bundle.getString("product"));
         query.addValueEventListener(new ValueEventListener() {
             @Override

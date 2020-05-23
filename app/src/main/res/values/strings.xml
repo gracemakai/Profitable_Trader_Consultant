@@ -565,4 +565,10 @@
     <string name="name">Name</string>
     <string name="lowest_price">Lowest Price</string>
     <string name="highest_price">Highest Price</string>
+
+    <string name="Info">
+        Profitable Trader Consultant is an app that assists the trader know where to price their products. It gives you the prices of the product you are selling around your area.
+    </string>
+    <string name="product">Product</string>
+    <string name="back_button">Back button</string>
 </resources>

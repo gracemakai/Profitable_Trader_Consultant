@@ -7,6 +7,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -35,6 +36,13 @@ public class Edit_Company_Info extends AppCompatActivity {
         typeBox = findViewById(R.id.businessType);
         countyBox = findViewById(R.id.county);
         subCountyInput = findViewById(R.id.sub_county);
+        ImageButton Back = findViewById(R.id.back);
+        Back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Edit_Company_Info.super.onBackPressed();
+            }
+        });
 
         countyBox.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override

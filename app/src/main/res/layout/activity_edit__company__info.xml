@@ -1,32 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Navigation.ui.Edit_Company_Info">
 
+    <ImageButton
+        android:id="@+id/back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        app:srcCompat="@drawable/backbutton"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:contentDescription="@string/back_button" />
+
     <TextView
         android:id="@+id/head"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="44dp"
         android:layout_marginTop="50dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="20dp"
         android:fontFamily="sans-serif"
         android:gravity="center"
         android:text="@string/edit_your_business_information"
         android:textColor="#000000"
-        android:textSize="20sp"
-        android:layout_alignParentTop="true"/>
-
+        android:textSize="20sp" />
 
     <LinearLayout
         android:id="@+id/input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_below="@+id/head"
         android:layout_marginStart="25dp"
-        android:layout_marginEnd="25dp">
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="25dp"
+        android:orientation="vertical">
 
         <EditText
             android:id="@+id/businessName"
@@ -34,13 +45,13 @@
             android:layout_height="wrap_content"
             android:background="@drawable/edit_text"
             android:hint="@string/business_name"
-            android:inputType="text"
             android:importantForAutofill="no"
-            android:padding="15dp"/>
+            android:inputType="text"
+            android:padding="15dp" />
 
         <Space
             android:layout_width="wrap_content"
-            android:layout_height="25dp"/>
+            android:layout_height="25dp" />
 
         <Spinner
             android:id="@+id/businessType"
@@ -48,45 +59,49 @@
             android:layout_height="wrap_content"
             android:background="@drawable/edit_text"
             android:entries="@array/business_type"
-            android:padding="15dp"/>
+            android:padding="15dp" />
 
         <Space
             android:layout_width="wrap_content"
-            android:layout_height="25dp"/>
+            android:layout_height="25dp" />
 
         <Spinner
             android:id="@+id/county"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:entries="@array/county"
             android:background="@drawable/edit_text"
-            android:padding="15dp"
-            />
+            android:entries="@array/county"
+            android:padding="15dp" />
 
         <Space
             android:layout_width="wrap_content"
-            android:layout_height="25dp"/>
+            android:layout_height="25dp" />
 
         <Spinner
             android:id="@+id/sub_county"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:entries="@array/Sub_county"
             android:background="@drawable/edit_text"
-            android:padding="15dp"
-            />
+            android:entries="@array/Sub_county"
+            android:padding="4dp" />
 
     </LinearLayout>
 
     <Button
         android:id="@+id/save"
+        android:layout_width="390dp"
+        android:layout_height="60dp"
         android:layout_below="@id/input"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="25dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="25dp"
+        android:background="@drawable/button"
+        android:gravity="center"
         android:text="@string/save"
-        android:textColor="@color/colorPrimaryDark"
-        android:background="@drawable/button"/>
-
+        android:textSize="18sp"
+        android:textColor="@color/colorPrimaryDark" />
 
 </RelativeLayout>

@@ -141,6 +141,8 @@ public class HomeFragment extends Fragment {
                     countyBox.setText(CountyBox);
                     SubCounty = (String) dataSnapshot.child("subCounty").getValue();
                     subCountyBox.setText(SubCounty);
+
+                    FillRecycler(CountyBox);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -148,7 +150,11 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        final DatabaseReference databaseReferenceProduct = FirebaseDatabase.getInstance().getReference("User").child(Phone).child("Product");
+    }
+
+    public void FillRecycler(String countyBox){
+
+        final DatabaseReference databaseReferenceProduct = FirebaseDatabase.getInstance().getReference("Products").child(countyBox);
         databaseReferenceProduct.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
