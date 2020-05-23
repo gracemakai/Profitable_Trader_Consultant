@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
+    android:label="Activity"
     app:startDestination="@id/nav_home">
 
     <fragment
@@ -15,7 +16,7 @@
         android:id="@+id/nav_product_input"
         android:name="com.grace.profitabletraderconsultant.InformationInput.ProductInfo"
         android:label="@string/product_input"
-        tools:layout="@layout/fragment_product_info"/>
+        tools:layout="@layout/fragment_product_info" />
 
     <fragment
         android:id="@+id/nav_info"
@@ -23,10 +24,10 @@
         android:label="@string/menu_info"
         tools:layout="@layout/fragment_profile" />
 
-    <fragment
+    <activity
         android:id="@+id/nav_companyInfo"
-        android:name="com.grace.profitabletraderconsultant.InformationInput.CompanyInfo"
+        android:name="com.grace.profitabletraderconsultant.Navigation.ui.Edit_Company_Info"
         android:label="@string/company_info"
-        tools:layout="@layout/fragment_company_info" />
+        tools:layout="@layout/activity_edit__company__info"/>
 
 </navigation>

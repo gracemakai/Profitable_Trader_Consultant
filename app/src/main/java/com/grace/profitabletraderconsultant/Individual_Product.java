@@ -24,10 +24,9 @@ import java.util.List;
 
 public class Individual_Product extends AppCompatActivity {
 
-    TextView ProductName, ProductPrice, Lowest, Highest;
+    TextView ProductName, ProductPrice, Countybox, SubCountyBox, Lowest, Highest;
     LineChart lineChart;
     Bundle bundle;
-    String County;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,16 +35,17 @@ public class Individual_Product extends AppCompatActivity {
 
         ProductName = findViewById(R.id.productName);
         ProductPrice = findViewById(R.id.productPrice);
+        Countybox = findViewById(R.id.productCounty);
+        SubCountyBox = findViewById(R.id.productSubCounty);
         Lowest = findViewById(R.id.lowest);
         Highest = findViewById(R.id.highest);
-       // verticalBarChart = findViewById(R.id.VerticalBarChart);
         lineChart = findViewById(R.id.lineChart);
 
         bundle = getIntent().getExtras();
         ProductName.setText(bundle.getString("product"));
         ProductPrice.setText(bundle.getString("price"));
-        County = bundle.getString("county");
-
+        Countybox.setText(bundle.getString("county"));
+        SubCountyBox.setText(bundle.getString("sub"));
         lineChartData();
 
         Log.d("6", "Done");
@@ -123,121 +123,6 @@ public class Individual_Product extends AppCompatActivity {
         return sortedlist.get(sortedlist.size() - 1);
     }
 
-  /* public void verticalBarChartData (){
-       DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Product");
-       Query query = databaseReference.orderByChild("product").equalTo(bundle.getString("product"));
-       query.addListenerForSingleValueEvent(new ValueEventListener() {
-           @Override
-           public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-               collectPrices((Map<String, Object>) dataSnapshot.getValue());
-
-           }
-           @Override
-           public void onCancelled(@NonNull DatabaseError databaseError) {
-
-           }
-       });
-       //Month
-
-/*
-       final ArrayList dataset = new ArrayList();
-       DatabaseReference mPostReference = FirebaseDatabase.getInstance().getReference("Product");
-       Query query = mPostReference.orderByChild("product").equalTo(bundle.getString("product"));
-       query.addValueEventListener( new ValueEventListener() {
-               @Override
-               public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                   ArrayList yData = new ArrayList<>();
-
-                   for (int i = 0; i <= month.size(); i++) {
-                       for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                           i = i + 1;
-                           String SV = ds.child("price").getValue().toString();
-                           int SensorValue = Integer.parseInt(SV);
-                           yData.add(new BarEntry(SensorValue, i) {
-                           });
-                       }
-                   }
-
-
-                   BarDataSet barDataSet = new BarDataSet(yData, "DataData");
-                   dataset.add(barDataSet);
-                   BarData data = new BarData(month,dataset);
-                   verticalBarChart.setData(data);
-                   verticalBarChart.animateXY(2000, 2000);
-                   verticalBarChart.setDescription("My Chart");
-                   verticalBarChart.invalidate();
-               }
-
-           @Override
-           public void onCancelled(@NonNull DatabaseError databaseError) {
-
-           }
-       });
-
-       }
- */
-
-  /*  public void verticalBarChartData(){
-        BarData data = new BarData(Month(),Price());
-        Log.d("1", "Done");
-        verticalBarChart.setData(data);
-        Log.d("2", "Done");
-        verticalBarChart.setDescription(bundle.getString("product"));
-        Log.d("3", "Done");
-        verticalBarChart.animateXY(2000, 2000);
-        Log.d("4", "Done");
-        verticalBarChart.invalidate();
-        Log.d("5", "Done");
-    }
-
-  /*  public ArrayList Product()
-    {
-        ArrayList productName = new ArrayList<>();
-        //product = productList.get(position);
-       // productName.add(product.getProduct());
-        String products = bundle.getString("product");
-        productName.add(products);
-
-        return productName;
-    }
-
-   */
-/*
-    public ArrayList<String>Price(){
-        final ArrayList<String> productPrice = new ArrayList<>();
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Product");
-        Query query = databaseReference.orderByChild("product").equalTo(bundle.getString("product"));
-        query.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-              /*  for (DataSnapshot snapshot : dataSnapshot.getChildren()){
-                    String prices = snapshot.child("price").getValue().toString();
-                    productPrice.add(prices);
-
-
-                    GenericTypeIndicator<Map<String, Product>> genericTypeIndicator = new GenericTypeIndicator<Map<String, Product>>(){};
-                    Map<String, Product> hashMap = dataSnapshot.getValue(genericTypeIndicator);
-                    for (Map.Entry<String, Product> entry : hashMap.entrySet()) {
-                        Product product = entry.getValue();
-                        productPrice.add(product.getPrice());
-
-
-                        Log.d(TAG, product.getPrice());
-                    }
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-        Log.d("Price", "Done");
-        return productPrice;
-    }
-
-
     public ArrayList<String> Month(){
         ArrayList<String> month = new ArrayList<>();
         month.add("JAN");
@@ -248,38 +133,7 @@ public class Individual_Product extends AppCompatActivity {
         Log.d("Month", "Done");
         return month;
     }
-
- */
 }
-  /*  private void collectPrices(Map<String,Object> users) {
-
-        ArrayList genre = new ArrayList<>();
-        //iterate through each user, ignoring their UID
-        for (Map.Entry<String, Object> entry : users.entrySet()){
-
-            //Get user map
-            Map singleUser = (Map) entry.getValue();
-            //Get phone field and append to list
-            genre.add(singleUser.get("movieName"));
-        }
-        //month
-        final ArrayList<String> month = new ArrayList<>();
-        month.add("JAN");
-        month.add("FEB");
-        month.add("MARCH");
-        month.add("APRIL");
-        month.add("JUNE");
-
-        BarDataSet barDataSet = new BarDataSet(genre, "DataData");
-       // dataset.add(barDataSet);
-      /*  BarData data = new BarData(month,barDataSet);
-        verticalBarChart.setData(data);
-        verticalBarChart.animateXY(2000, 2000);
-        verticalBarChart.setDescription("My Chart");
-        verticalBarChart.invalidate();
-       // textView.setText(genre.toString());
-
-       */
 
 
 
