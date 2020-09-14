@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@color/White"
     tools:context=".Login.verification">
 
     <LinearLayout
@@ -43,7 +43,7 @@
             android:textSize="20sp"
             android:gravity="center"
             android:fontFamily="sans-serif"
-            android:textColor="#ffffff"
+            android:textColor="@color/Black"
             android:layout_marginBottom="25dp"
             android:paddingBottom="20dp"/>
 
@@ -51,7 +51,6 @@
             android:id="@+id/code"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:autoText="false"
             android:background="@drawable/edit_text"
             android:digits="0123456789"
 
@@ -60,7 +59,7 @@
             android:importantForAutofill="no"
             android:inputType="phone"
             android:padding="15dp"
-            android:textColorHint="@color/hintColor" />
+            android:textColorHint="@color/Black" />
 
         <Button
             android:id="@+id/verify"

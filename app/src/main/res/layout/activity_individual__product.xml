@@ -149,7 +149,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:divider="@color/Dark">
+            android:divider="@color/Purple_Dark">
 
             <TextView
                 android:layout_width="wrap_content"

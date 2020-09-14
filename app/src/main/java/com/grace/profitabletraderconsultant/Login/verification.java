@@ -49,14 +49,14 @@ public class verification extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_verification);
 
         //Initializing objects
         mAuth = FirebaseAuth.getInstance();
-        currentUser = FirebaseAuth.getInstance().getCurrentUser();
-        mFirebaseInstance = FirebaseDatabase.getInstance();
-        mFirebaseDatabase = mFirebaseInstance.getReference("Members");
+        currentUser = mAuth.getCurrentUser();
+        mFirebaseDatabase = FirebaseDatabase.getInstance().getReference("Members");
 
         editTextCode = findViewById(R.id.code);
 
@@ -90,9 +90,9 @@ public class verification extends AppCompatActivity {
             }
         });
     }
+
     //Method that sends verification code
     private void sendVerificationCode(String phone){
-
         PhoneAuthProvider.getInstance().verifyPhoneNumber
             (
                     "+254" + phone,
@@ -117,9 +117,10 @@ public class verification extends AppCompatActivity {
             }
         }
 
-
         @Override
         public void onVerificationFailed(FirebaseException e) {
+
+            startActivity(new Intent(verification.this, Login.class));
 
             Toast.makeText(verification.this, e.getMessage(),Toast.LENGTH_LONG).show();
         }
@@ -153,29 +154,7 @@ public class verification extends AppCompatActivity {
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
 
-                /*    boolean isNew = task.getResult().getAdditionalUserInfo().isNewUser();
-                    if (!isNew){
-                        Toast.makeText(verification.this, "Not new", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(verification.this, Navigation.class);
-                        intent.putExtra("Phone", phone);
-                        startActivity(intent);
-                    }else {
-
-                        Intent intent = new Intent(verification.this, Input.class);
-                        intent.putExtra("Phone", phone);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        startActivity(intent);
-
-                        Bundle bundle = new Bundle();
-                        bundle.putString("Phone", phone);
-                        Intent intent1 = new Intent(verification.this, ProductInfo.class);
-                        intent1.putExtras(bundle);
-                    }
-
-                 */
-
                 }else {
-
 
                     if (task.getException() instanceof FirebaseAuthInvalidCredentialsException){
                         String message = "Invalid code entered";

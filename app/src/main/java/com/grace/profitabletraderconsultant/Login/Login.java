@@ -15,6 +15,9 @@ import com.grace.profitabletraderconsultant.R;
 
 public class Login extends AppCompatActivity {
 
+    EditText Phone;
+    Button submit;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,8 +27,9 @@ public class Login extends AppCompatActivity {
         if (user != null){
             startActivity(new Intent(Login.this, Navigation.class));
         }
-        final EditText Phone = findViewById(R.id.phone);
-        Button submit = findViewById(R.id.sign_In);
+
+        Phone = findViewById(R.id.phone);
+        submit = findViewById(R.id.sign_In);
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override

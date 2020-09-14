@@ -41,7 +41,7 @@ import static android.content.ContentValues.TAG;
 
 public class HomeFragment extends Fragment {
 
-    private RecyclerView.Adapter mAdapter;
+    private MyAdapter mAdapter;
     private TextView nameBox;
     private TextView typeBox;
     private TextView countyBox;
@@ -149,10 +149,9 @@ public class HomeFragment extends Fragment {
 
             }
         });
-
     }
 
-    public void FillRecycler(String countyBox){
+    private void FillRecycler(String countyBox){
 
         final DatabaseReference databaseReferenceProduct = FirebaseDatabase.getInstance().getReference("Products").child(countyBox);
         databaseReferenceProduct.addValueEventListener(new ValueEventListener() {
@@ -167,12 +166,10 @@ public class HomeFragment extends Fragment {
                     Log.i(TAG, product.getProduct());
                     Log.i(TAG, product.getPrice());
                 }
-
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
             }
         });
     }

@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimaryDark">#8261ed</color>
-    <color name="hintColor">#56000000</color>
+    <color name="Black">#56000000</color>
 
     //My creation
-    <color name="Dark">#5104b5</color>
-    <color name="Medium">#7005fa</color>
-    <color name="Light">#7b49b6</color>
-    <color name="Odd">#FFD53D</color>
+    <color name="Purple_Dark">#5104b5</color>
+    <color name="Purple_Medium">#7005fa</color>
+    <color name="Purple_Light">#7b49b6</color>
+    <color name="Yellow">#FFD53D</color>
+    <color name="White">#ffffff</color>
 
 </resources>

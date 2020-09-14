@@ -13,7 +13,7 @@
         android:text="@string/business_information"
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
         android:textSize="20sp"
-        android:layout_marginBottom="9dp"/>
+        android:layout_marginTop="9dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,7 +21,6 @@
         android:orientation="vertical"
         android:id="@+id/businessInfo"
         android:layout_below="@id/Title"
-        android:layout_marginTop="0dp"
         android:clickable="true"
         android:focusable="true">
 
@@ -84,7 +83,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:textColor="@color/Dark"
+                android:textColor="@color/Purple_Dark"
                 android:text="@string/product"/>
 
             <TextView
@@ -92,7 +91,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:textColor="@color/Dark"
+                android:textColor="@color/Purple_Dark"
                 android:text="@string/price"/>
 
         </LinearLayout>
