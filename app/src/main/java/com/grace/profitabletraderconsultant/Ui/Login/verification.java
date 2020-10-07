@@ -1,4 +1,4 @@
-package com.grace.profitabletraderconsultant.Login;
+package com.grace.profitabletraderconsultant.Ui.Login;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -27,8 +27,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.grace.profitabletraderconsultant.InformationInput.Input;
 import com.grace.profitabletraderconsultant.R;
+import com.grace.profitabletraderconsultant.Ui.InformationInput.Input;
 import com.grace.profitabletraderconsultant.User;
 
 import java.util.concurrent.TimeUnit;
@@ -40,7 +40,6 @@ public class verification extends AppCompatActivity {
     private FirebaseUser currentUser;
     private FirebaseAuth mAuth;
     private DatabaseReference mFirebaseDatabase;
-    private FirebaseDatabase mFirebaseInstance;
     public String phone;
     public String extendedPhone;
     EditText editTextCode;

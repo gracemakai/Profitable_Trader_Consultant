@@ -1,4 +1,4 @@
-package com.grace.profitabletraderconsultant.InformationInput;
+package com.grace.profitabletraderconsultant.Ui.InformationInput;
 
 import android.os.Bundle;
 

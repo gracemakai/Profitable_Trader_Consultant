@@ -1,4 +1,4 @@
-package com.grace.profitabletraderconsultant.InformationInput;
+package com.grace.profitabletraderconsultant.Ui.InformationInput;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,8 +19,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.grace.profitabletraderconsultant.Navigation.Navigation;
+import com.grace.profitabletraderconsultant.Models.Product;
 import com.grace.profitabletraderconsultant.R;
+import com.grace.profitabletraderconsultant.Ui.Navigation.Navigation;
 
 public class ProductInfo extends Fragment {
 
@@ -86,7 +87,7 @@ public class ProductInfo extends Fragment {
 
 
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Product");
-        Product product = new Product(Product, Price);
+        com.grace.profitabletraderconsultant.Models.Product product = new Product(Product, Price);
         databaseReference.push().setValue(product);
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("User").child(Phone).child("Product");

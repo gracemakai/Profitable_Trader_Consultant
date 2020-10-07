@@ -1,9 +1,11 @@
-package com.grace.profitabletraderconsultant.InformationInput;
+package com.grace.profitabletraderconsultant.Adapters;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+
+import com.grace.profitabletraderconsultant.Ui.InformationInput.CompanyInfo;
+import com.grace.profitabletraderconsultant.Ui.InformationInput.ProductInfo;
 
 public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
 

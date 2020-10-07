@@ -1,4 +1,4 @@
-package com.grace.profitabletraderconsultant.Navigation.ui;
+package com.grace.profitabletraderconsultant.Ui.Navigation.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,9 +16,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.grace.profitabletraderconsultant.InformationInput.Company;
-import com.grace.profitabletraderconsultant.Navigation.Navigation;
+import com.grace.profitabletraderconsultant.Models.Company;
 import com.grace.profitabletraderconsultant.R;
+import com.grace.profitabletraderconsultant.Ui.Navigation.Navigation;
 
 public class Edit_Company_Info extends AppCompatActivity {
 

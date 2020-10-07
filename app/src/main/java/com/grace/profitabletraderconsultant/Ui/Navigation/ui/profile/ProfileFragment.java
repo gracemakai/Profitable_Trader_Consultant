@@ -1,4 +1,4 @@
-package com.grace.profitabletraderconsultant.Navigation.ui.tools;
+package com.grace.profitabletraderconsultant.Ui.Navigation.ui.profile;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,20 +14,20 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.grace.profitabletraderconsultant.R;
 
-public class ToolsFragment extends Fragment {
+public class ProfileFragment extends Fragment {
 
-    private ToolsViewModel toolsViewModel;
+    private ProfileViewModel profileViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        toolsViewModel =
-                ViewModelProviders.of(this).get(ToolsViewModel.class);
+        profileViewModel =
+                ViewModelProviders.of(this).get(ProfileViewModel.class);
         View root = inflater.inflate(R.layout.fragment_profile, container, false);
         final TextView textView = root.findViewById(R.id.text_tools);
-        toolsViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        profileViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
-                textView.setText(R.string.Info);
+                textView.setText(s);
             }
         });
         return root;

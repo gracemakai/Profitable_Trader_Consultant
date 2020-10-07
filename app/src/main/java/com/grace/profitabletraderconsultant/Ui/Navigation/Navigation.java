@@ -1,4 +1,4 @@
-package com.grace.profitabletraderconsultant.Navigation;
+package com.grace.profitabletraderconsultant.Ui.Navigation;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,8 +15,8 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
-import com.grace.profitabletraderconsultant.Login.Login;
 import com.grace.profitabletraderconsultant.R;
+import com.grace.profitabletraderconsultant.Ui.Login.Login;
 
 import static androidx.navigation.Navigation.findNavController;
 

@@ -1,4 +1,4 @@
-package com.grace.profitabletraderconsultant.Navigation.ui.home;
+package com.grace.profitabletraderconsultant.Ui.Navigation.ui.home;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,20 +18,19 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
+import com.grace.profitabletraderconsultant.Constants;
 import com.grace.profitabletraderconsultant.Individual_Product;
-import com.grace.profitabletraderconsultant.InformationInput.Product;
-import com.grace.profitabletraderconsultant.Navigation.MyAdapter;
-import com.grace.profitabletraderconsultant.Navigation.ui.Edit_Company_Info;
+import com.grace.profitabletraderconsultant.Models.Product;
 import com.grace.profitabletraderconsultant.R;
 import com.grace.profitabletraderconsultant.RecyclerTouchListener;
+import com.grace.profitabletraderconsultant.Ui.Navigation.MyAdapter;
+import com.grace.profitabletraderconsultant.Ui.Navigation.ui.Edit_Company_Info;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,9 +51,12 @@ public class HomeFragment extends Fragment {
     private String TypeBox;
     private String SubCounty;
     List<Product> productList = new ArrayList<>();
+    Constants constants;
 
     public View onCreateView( @NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View root = inflater.inflate(R.layout.fragment_home, container, false);
+
+        constants = new Constants();
 
         nameBox = root.findViewById(R.id.businessNameOutput);
         typeBox = root.findViewById(R.id.businessType);
@@ -122,14 +124,15 @@ public class HomeFragment extends Fragment {
 
     private void create() {
 
-        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null){
-            Phone = user.getPhoneNumber();
-            Phone = Phone.replaceAll("\\D", "");
-            Phone = Phone.replaceFirst("254", "");
-            Phone = "0" + Phone;
-        }
-        DatabaseReference databaseReferenceCompany = FirebaseDatabase.getInstance().getReference("User").child(Phone).child("Company");
+        Phone = constants.getPhone();
+
+        nameBox.setText(constants.Name());
+        typeBox.setText(constants.Type());
+        countyBox.setText(constants.County());
+        subCountyBox.setText(constants.SubCounty());
+        FillRecycler(constants.County());
+
+     /*   DatabaseReference databaseReferenceCompany = FirebaseDatabase.getInstance().getReference("User").child(Phone).child("Company");
         databaseReferenceCompany.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -148,7 +151,7 @@ public class HomeFragment extends Fragment {
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        });
+        });*/
     }
 
     private void FillRecycler(String countyBox){

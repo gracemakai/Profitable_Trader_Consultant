@@ -1,4 +1,4 @@
-package com.grace.profitabletraderconsultant.Login;
+package com.grace.profitabletraderconsultant.Ui.Login;
 
 import android.content.Intent;
 import android.os.Bundle;

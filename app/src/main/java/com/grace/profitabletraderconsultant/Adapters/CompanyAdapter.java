@@ -1,4 +1,4 @@
-package com.grace.profitabletraderconsultant.InformationInput;
+package com.grace.profitabletraderconsultant.Adapters;
 
 import android.content.Context;
 import android.view.View;
@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.ViewHolder;
 
+import com.grace.profitabletraderconsultant.Models.Company;
 import com.grace.profitabletraderconsultant.R;
 
 import java.util.List;

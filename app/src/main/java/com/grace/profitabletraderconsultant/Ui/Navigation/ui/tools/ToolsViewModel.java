@@ -1,16 +1,16 @@
-package com.grace.profitabletraderconsultant.Navigation.ui.profile;
+package com.grace.profitabletraderconsultant.Ui.Navigation.ui.tools;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class ProfileViewModel extends ViewModel {
+public class ToolsViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public ProfileViewModel() {
+    public ToolsViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is slideshow fragment");
+        mText.setValue("This is tools fragment");
     }
 
     public LiveData<String> getText() {

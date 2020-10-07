@@ -1,4 +1,4 @@
-package com.grace.profitabletraderconsultant.InformationInput;
+package com.grace.profitabletraderconsultant.Ui.InformationInput;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -19,6 +19,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.grace.profitabletraderconsultant.Models.Company;
 import com.grace.profitabletraderconsultant.R;
 
 public class CompanyInfo extends Fragment {

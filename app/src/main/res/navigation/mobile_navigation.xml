@@ -8,25 +8,25 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.grace.profitabletraderconsultant.Navigation.ui.home.HomeFragment"
+        android:name="com.grace.profitabletraderconsultant.Ui.Navigation.ui.home.HomeFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/nav_product_input"
-        android:name="com.grace.profitabletraderconsultant.InformationInput.ProductInfo"
+        android:name="com.grace.profitabletraderconsultant.Ui.InformationInput.ProductInfo"
         android:label="@string/product_input"
         tools:layout="@layout/fragment_product_info" />
 
     <fragment
         android:id="@+id/nav_info"
-        android:name="com.grace.profitabletraderconsultant.Navigation.ui.tools.ToolsFragment"
+        android:name="com.grace.profitabletraderconsultant.Ui.Navigation.ui.tools.ToolsFragment"
         android:label="@string/menu_info"
         tools:layout="@layout/fragment_profile" />
 
     <activity
         android:id="@+id/nav_companyInfo"
-        android:name="com.grace.profitabletraderconsultant.Navigation.ui.Edit_Company_Info"
+        android:name="com.grace.profitabletraderconsultant.Ui.Navigation.ui.Edit_Company_Info"
         android:label="@string/company_info"
         tools:layout="@layout/activity_edit__company__info"/>
 

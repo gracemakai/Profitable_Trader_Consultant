@@ -13,9 +13,13 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class Constants {
+    String SubCounty;
     String County;
+    String Name;
+    String Type;
     ConstantsModel constantsModel = new ConstantsModel();
-    public static String getPhone() {
+
+    public String getPhone() {
         String Phone = null;
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
@@ -30,33 +34,34 @@ public class Constants {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("User").child(getPhone()).child("Company");
 
     public String Name(){
-        final String[] Name = {"Name"};
+
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Name[0] = dataSnapshot.child("businessName").getValue().toString();
+                Name = dataSnapshot.child("businessName").getValue().toString();
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
-        return Name[0];
+        return Name;
     }
 
     public String Type(){
-        final String[] Type = {"Type"};
+
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Type[0] = dataSnapshot.child("businessType").getValue().toString();
+                Type = dataSnapshot.child("businessType").getValue().toString();
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
-        return Type[0];
+
+        return Type;
     }
 
     public String County(){
@@ -66,30 +71,30 @@ public class Constants {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                County = dataSnapshot.child("county").getValue().toString();
                constantsModel.setCounty(County);
-                Log.d("Constants Constants Constants",constantsModel.getCounty() );
+                Log.d("Constants Constants Constants", constantsModel.getCounty() );
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
-        Log.d("Constants Constants Constants",constantsModel.getCounty());
+        Log.i("Constants Constants Constants",constantsModel.getCounty());
         return constantsModel.getCounty();
     }
 
     public String SubCounty(){
-        final String[] SubCounty = {"SubCounty"};
+
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                SubCounty[0] = dataSnapshot.child("subCounty").getValue().toString();
+                SubCounty = dataSnapshot.child("subCounty").getValue().toString();
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
-        return SubCounty[0];
+        return SubCounty;
     }
 }
 

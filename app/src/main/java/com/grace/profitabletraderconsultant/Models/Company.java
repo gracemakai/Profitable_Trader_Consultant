@@ -1,4 +1,4 @@
-package com.grace.profitabletraderconsultant.InformationInput;
+package com.grace.profitabletraderconsultant.Models;
 
 import com.google.firebase.database.IgnoreExtraProperties;
 @IgnoreExtraProperties

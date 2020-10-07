@@ -1,4 +1,4 @@
-package com.grace.profitabletraderconsultant.Navigation;
+package com.grace.profitabletraderconsultant.Ui.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,7 +8,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.grace.profitabletraderconsultant.InformationInput.Product;
+import com.grace.profitabletraderconsultant.Models.Product;
 import com.grace.profitabletraderconsultant.R;
 
 import java.util.List;

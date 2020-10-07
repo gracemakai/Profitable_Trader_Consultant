@@ -7,7 +7,7 @@
     android:background="#ffffff"
     android:orientation="vertical"
     android:id="@+id/container"
-    tools:context=".InformationInput.Input">
+    tools:context=".Ui.InformationInput.Input">
 
 
     <FrameLayout

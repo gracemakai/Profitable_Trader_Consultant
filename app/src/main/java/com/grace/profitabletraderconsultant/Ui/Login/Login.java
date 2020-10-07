@@ -1,4 +1,4 @@
-package com.grace.profitabletraderconsultant.Login;
+package com.grace.profitabletraderconsultant.Ui.Login;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,8 +10,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.grace.profitabletraderconsultant.Navigation.Navigation;
 import com.grace.profitabletraderconsultant.R;
+import com.grace.profitabletraderconsultant.Ui.Navigation.Navigation;
 
 public class Login extends AppCompatActivity {
 
