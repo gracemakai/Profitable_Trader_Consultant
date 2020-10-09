@@ -9,31 +9,24 @@
         android:roundIcon="@mipmap/logo_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity
-            android:name=".Navigation.Navigation"
-            android:label="@string/title_activity_navigation"
-            android:theme="@style/AppTheme.NoActionBar.NoActionBar">
-
-        </activity>
-
-        <activity android:name=".InformationInput.Input">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-        </activity>
-        <activity android:name=".Login.verification" />
-        <activity android:name=".Login.Login">
-
-        </activity>
-        <activity android:name=".MainActivity">
+        <activity android:name=".Ui.Login.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Ui.Navigation.ui.Edit_Company_Info" />
+        <activity android:name=".Individual_Product" />
+        <activity
+            android:name=".Ui.Navigation.Navigation"
+            android:label="@string/title_activity_navigation"
+            android:theme="@style/AppTheme.NoActionBar.NoActionBar" />
+        <activity android:name=".Ui.InformationInput.Input" />
+        <activity android:name=".Ui.Login.verification" />
+        <activity android:name=".Ui.Login.Login"/>
+        <activity android:name=".MainActivity"/>
+
     </application>
 
 </manifest>

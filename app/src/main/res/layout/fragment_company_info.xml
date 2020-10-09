@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".InformationInput.CompanyInfo">
+    tools:context=".Ui.InformationInput.CompanyInfo">
 
 
     <TextView
@@ -15,7 +14,7 @@
         android:layout_marginBottom="50dp"
         android:fontFamily="sans-serif"
         android:gravity="center"
-        android:text="Tell us about your business"
+        android:text="@string/tell_us_about_your_business"
         android:textColor="#000000"
         android:textSize="20sp"
         android:layout_alignParentTop="true"/>
@@ -35,7 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/edit_text"
-            android:hint="Business name"
+            android:hint="@string/business_name"
             android:inputType="text"
             android:importantForAutofill="no"
             android:padding="15dp"/>
@@ -69,16 +68,14 @@
             android:layout_width="wrap_content"
             android:layout_height="25dp"/>
 
-       <!--
-        <EditText
+        <Spinner
+            android:id="@+id/sub_county"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:entries="@array/Sub_county"
             android:background="@drawable/edit_text"
-            android:hint="Sub-county"
-            android:inputType="text"
-            android:importantForAutofill="no"
-            android:padding="15dp"/>
-            -->
+            android:padding="15dp"
+            />
 
     </LinearLayout>
 
@@ -88,9 +85,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="25dp"
-        android:text="Save"
+        android:text="@string/save"
         android:textColor="@color/colorPrimaryDark"
         android:background="@drawable/button"/>
-
 
 </RelativeLayout>

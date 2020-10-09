@@ -1,34 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="?android:attr/listPreferredItemHeight"
+    android:layout_height="50dp"
+    android:orientation="horizontal"
     android:padding="6dp">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-    <TextView
-        android:id="@+id/firstLine"
-        android:layout_width="wrap_content"
-        android:layout_height="26dp"
-        android:text="Maize"
-        android:textSize="20sp"/>
 
-    <Space
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/First"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="@string/product"
+            android:textSize="16sp" />
 
-    <TextView
-        android:id="@+id/secondLine"
-        android:layout_width="wrap_content"
-        android:layout_height="26dp"
-        android:text="Price"
-        android:textSize="20sp"/>
+
+        <TextView
+            android:id="@+id/Second"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="@string/price"
+            android:textSize="16sp" />
 
     </LinearLayout>
-
-
-
-
-</RelativeLayout>

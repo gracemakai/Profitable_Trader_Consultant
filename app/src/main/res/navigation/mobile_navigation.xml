@@ -3,41 +3,31 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/nav_gallery">
+    android:label="Activity"
+    app:startDestination="@id/nav_home">
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.grace.profitabletraderconsultant.Navigation.ui.home.HomeFragment"
+        android:name="com.grace.profitabletraderconsultant.Ui.Navigation.ui.home.HomeFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.grace.profitabletraderconsultant.Navigation.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        android:id="@+id/nav_product_input"
+        android:name="com.grace.profitabletraderconsultant.Ui.InformationInput.ProductInfo"
+        android:label="@string/product_input"
+        tools:layout="@layout/fragment_product_info" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.grace.profitabletraderconsultant.Navigation.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_info"
+        android:name="com.grace.profitabletraderconsultant.Ui.Navigation.ui.tools.ToolsFragment"
+        android:label="@string/menu_info"
+        tools:layout="@layout/fragment_profile" />
 
-    <fragment
-        android:id="@+id/nav_tools"
-        android:name="com.grace.profitabletraderconsultant.Navigation.ui.tools.ToolsFragment"
-        android:label="@string/menu_tools"
-        tools:layout="@layout/fragment_tools" />
+    <activity
+        android:id="@+id/nav_companyInfo"
+        android:name="com.grace.profitabletraderconsultant.Ui.Navigation.ui.Edit_Company_Info"
+        android:label="@string/company_info"
+        tools:layout="@layout/activity_edit__company__info"/>
 
-    <fragment
-        android:id="@+id/nav_share"
-        android:name="com.grace.profitabletraderconsultant.Navigation.ui.share.ShareFragment"
-        android:label="@string/menu_share"
-        tools:layout="@layout/fragment_share" />
-
-    <fragment
-        android:id="@+id/nav_send"
-        android:name="com.grace.profitabletraderconsultant.Navigation.ui.send.SendFragment"
-        android:label="@string/menu_send"
-        tools:layout="@layout/fragment_send" />
 </navigation>

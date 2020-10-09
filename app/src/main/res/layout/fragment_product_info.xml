@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".InformationInput.ProductInfo">
+    tools:context=".Ui.InformationInput.ProductInfo">
 
     <TextView
         android:id="@+id/head"
@@ -49,18 +49,19 @@
             <EditText
                 android:id="@+id/price"
                 android:layout_width="202dp"
-                android:layout_weight="2"
+                android:layout_weight="3"
                 android:layout_height="wrap_content"
-                android:hint="Price"
+                android:hint="@string/price"
                 android:importantForAutofill="no"
-                android:inputType="text"
+                android:inputType="number"
                 android:layout_marginStart="20dp"
                 android:padding="15dp" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Kg(s)"
+                android:layout_weight="2"
+                android:text="@string/kg_s"
                 android:gravity="center"
                 android:layout_marginStart="10dp"
                 android:textSize="16sp"

@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="logo_background">@drawable/background</color>
+    <color name="logo_background">@color/Purple_Medium</color>
 </resources>
