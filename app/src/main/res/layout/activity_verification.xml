@@ -43,7 +43,7 @@
             android:textSize="20sp"
             android:gravity="center"
             android:fontFamily="sans-serif"
-            android:textColor="@color/Black"
+            android:textColor="@color/black"
             android:layout_marginBottom="25dp"
             android:paddingBottom="20dp"/>
 
@@ -59,7 +59,7 @@
             android:importantForAutofill="no"
             android:inputType="phone"
             android:padding="15dp"
-            android:textColorHint="@color/Black" />
+            android:textColorHint="@color/black" />
 
         <Button
             android:id="@+id/verify"

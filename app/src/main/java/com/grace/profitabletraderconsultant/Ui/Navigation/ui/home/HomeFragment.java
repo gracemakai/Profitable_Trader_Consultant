@@ -24,7 +24,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
 import com.grace.profitabletraderconsultant.Constants;
 import com.grace.profitabletraderconsultant.Individual_Product;
@@ -33,11 +32,9 @@ import com.grace.profitabletraderconsultant.Models.Product;
 import com.grace.profitabletraderconsultant.R;
 import com.grace.profitabletraderconsultant.RecyclerTouchListener;
 import com.grace.profitabletraderconsultant.Ui.Navigation.MyAdapter;
-import com.grace.profitabletraderconsultant.Ui.Navigation.ui.Edit_Company_Info;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class HomeFragment extends Fragment {
 
@@ -68,12 +65,12 @@ public class HomeFragment extends Fragment {
         create();
 
         //To edit business info
-        business.setOnClickListener(new View.OnClickListener() {
+      /*  business.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(root.getContext(), Edit_Company_Info.class));
             }
-        });
+        });*/
 
         //recyclerView
         RecyclerView recyclerView = root.findViewById(R.id.recycler_View);
@@ -87,13 +84,15 @@ public class HomeFragment extends Fragment {
         recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getContext(), recyclerView, new RecyclerTouchListener.ClickListener() {
             @Override
             public void onClick(View view, int position) {
+
                 Product product = productList.get(position);
                 Toast.makeText(getContext(), product.getProduct() + " is selected!", Toast.LENGTH_SHORT).show();
                 Bundle bundle = new Bundle();
                 bundle.putString("product", product.getProduct());
                 bundle.putString("price", product.getPrice());
-                bundle.putString("county", CountyBox);
-                bundle.putString("sub", SubCountyBox);
+                bundle.putString("county", countyBox.getText().toString());
+                bundle.putString("sub", subCountyBox.getText().toString());
+
                 Intent intent = new Intent(view.getContext(), Individual_Product.class);
                 intent.putExtras(bundle);
                 startActivity(intent);
@@ -159,18 +158,33 @@ public class HomeFragment extends Fragment {
         constants.County();
         ConstantsModel constantsModel = new ConstantsModel();
 
-        Toast.makeText(getActivity(), constantsModel.getCounty(), Toast.LENGTH_SHORT).show();
- //       Log.i(TAG, constants.County());
+        DatabaseReference databaseReferenceCounty = FirebaseDatabase.getInstance().getReference("User").child(getPhone()).child("Company");
+        databaseReferenceCounty.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                nameBox.setText(dataSnapshot.child("businessName").getValue(String.class));
+                countyBox.setText(dataSnapshot.child("county").getValue(String.class));
+                typeBox.setText(dataSnapshot.child("businessType").getValue(String.class));
+                subCountyBox.setText(dataSnapshot.child("subCounty").getValue(String.class));
 
+            }
 
-        final DatabaseReference databaseReferenceProduct = FirebaseDatabase.getInstance().getReference("Products").child("Garissa");
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        DatabaseReference databaseReferenceProduct = FirebaseDatabase.getInstance().getReference("User").child(getPhone()).child("Product");
         databaseReferenceProduct.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                GenericTypeIndicator<Map<String, Product>> genericTypeIndicator = new GenericTypeIndicator<Map<String, Product>>() {};
-                Map<String, Product> hashMap = dataSnapshot.getValue(genericTypeIndicator);
-                for (Map.Entry<String, Product> entry : hashMap.entrySet()) {
-                    Product product = entry.getValue();
+
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+
+                    Product product = new Product();
+                    product.setProduct(snapshot.child("product").getValue(String.class));
+                    product.setPrice(snapshot.child("price").getValue(String.class));
                     productList.add(product);
                     mAdapter.notifyDataSetChanged();
                     Log.i(TAG, product.getProduct());
@@ -180,6 +194,7 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.e(TAG, "onCancelled: " +databaseError.getDetails() );
             }
         });
     }
