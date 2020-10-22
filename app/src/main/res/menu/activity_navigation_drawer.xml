@@ -8,11 +8,11 @@
             android:id="@+id/nav_home"
             android:icon="@drawable/home"
             android:title="@string/menu_home" />
-
+<!--
         <item
             android:id="@+id/nav_companyInfo"
             android:icon="@drawable/company"
-            android:title="@string/company_info"/>
+            android:title="@string/company_info"/>-->
         <item
             android:id="@+id/nav_product_input"
             android:icon="@drawable/product"

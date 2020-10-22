@@ -5,6 +5,7 @@ The app uses the MPAndroidChart library and Firebase realtime database.
 For the login and registration, it uses firebase authentication.
 
 
+
 <a href="url"><img src="https://user-images.githubusercontent.com/24943411/96904258-89409a00-149f-11eb-8bee-c7dfac69d782.jpeg" align="left" height="640" width="307" ></a>
 <a href="url"><img src="https://user-images.githubusercontent.com/24943411/96904272-8f367b00-149f-11eb-9cb0-82a32954171f.jpeg" align="right" height="640" width="307" ></a>
 

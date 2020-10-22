@@ -11,6 +11,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.grace.profitabletraderconsultant.Models.ConstantsModel;
 
 public class Constants {
     String SubCounty;
@@ -18,6 +19,10 @@ public class Constants {
     String Name;
     String Type;
     ConstantsModel constantsModel = new ConstantsModel();
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("User").child(getPhone()).child("Company");
+
+    public Constants() {
+    }
 
     public String getPhone() {
         String Phone = null;
@@ -30,8 +35,6 @@ public class Constants {
         }
         return Phone;
     }
-
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("User").child(getPhone()).child("Company");
 
     public String Name(){
 
@@ -66,19 +69,18 @@ public class Constants {
 
     public String County(){
 
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        DatabaseReference databaseReferenceCounty = FirebaseDatabase.getInstance().getReference("User").child(getPhone()).child("Company");
+        databaseReferenceCounty.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-               County = dataSnapshot.child("county").getValue().toString();
-               constantsModel.setCounty(County);
-                Log.d("Constants Constants Constants", constantsModel.getCounty() );
+               constantsModel.setCounty(dataSnapshot.child("county").getValue(String.class));
+               Log.d("Constants Constants Constants comstants",  constantsModel.getCounty() );
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
-        Log.i("Constants Constants Constants",constantsModel.getCounty());
         return constantsModel.getCounty();
     }
 

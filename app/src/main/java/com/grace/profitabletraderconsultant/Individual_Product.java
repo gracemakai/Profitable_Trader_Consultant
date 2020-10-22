@@ -33,6 +33,15 @@ public class Individual_Product extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_individual__product);
 
+        initViews();
+
+        lineChartData();
+
+        Log.d("6", "Done");
+    }
+
+    private void initViews() {
+
         ProductName = findViewById(R.id.productName);
         ProductPrice = findViewById(R.id.productPrice);
         Countybox = findViewById(R.id.productCounty);
@@ -41,27 +50,30 @@ public class Individual_Product extends AppCompatActivity {
         Highest = findViewById(R.id.highest);
         lineChart = findViewById(R.id.lineChart);
 
+
         bundle = getIntent().getExtras();
         ProductName.setText(bundle.getString("product"));
         ProductPrice.setText(bundle.getString("price"));
         Countybox.setText(bundle.getString("county"));
         SubCountyBox.setText(bundle.getString("sub"));
-        lineChartData();
 
-        Log.d("6", "Done");
     }
 
     public void lineChartData(){
-        DatabaseReference mPostReference = FirebaseDatabase.getInstance().getReference("Products").child(bundle.getString("county"));
-        Query query = mPostReference.orderByChild("product").equalTo(bundle.getString("product"));
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Products").child(Countybox.getText().toString());
+        Query query = databaseReference.orderByChild("product").equalTo(bundle.getString("product"));
+
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                List priceData = new ArrayList();
-                ArrayList yData = new ArrayList<>();
+                ArrayList<Integer> priceData = new ArrayList<>();
+                ArrayList<Entry> yData = new ArrayList<>();
                 float i =0;
+
                 for (DataSnapshot ds : dataSnapshot.getChildren()){
+
+                    Log.i(getClass().getSimpleName(), "onDataChange: " + ds.child("price").getValue(String.class));
                     i=i+1;
                     String SV =  ds.child("price").getValue().toString();
                     int SensorValue = Integer.parseInt(SV);
